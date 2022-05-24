@@ -21,39 +21,38 @@ import seaborn as sns
 
 df = pd.read_csv("movie_metadata.csv")
 
+#Select only important attributes for the dataframe for predict the gross of the movie
 df = df[["num_critic_for_reviews", "duration", "director_facebook_likes", "actor_3_facebook_likes","actor_1_facebook_likes" ,"num_voted_users","cast_total_facebook_likes",
          "facenumber_in_poster", "num_user_for_reviews", "language", "country", "budget", "actor_2_facebook_likes", "imdb_score","aspect_ratio", "movie_facebook_likes", "gross"]]
+df.head(5)
 
 print('Rows     :',df.shape[0])
 print('Columns  :',df.shape[1])
 print('\nFeatures :\n     :',df.columns.tolist())
-print('\nMissing values    :',df.isnull().values.sum())
-print('\nMissing values - Country    :',df['country'].isnull().values.sum())
-print('\nMissing values - language    :',df['language'].isnull().values.sum())
-print('\nMissing values - budget    :',df['budget'].isnull().values.sum())
-print('\nMissing values - aspect_ratio    :',df['aspect_ratio'].isnull().values.sum())
 print('\nUnique values : \n',df.nunique())
+print('Number of null values of each column')
+df.isna().sum()
 
-
-
-
-
+#Drop all the null values of country and language columns
 df = df.dropna(subset=['country','language'],inplace=False)
-#df = df.loc[:,~df.columns.duplicated()]
 
-country = LabelEncoder()
+#Encode the country values to a numberical value
+country = LabelEncoder() #define the encoder
 df['country'] = country.fit_transform(df['country'])
 df["country"].unique()
 
-language = LabelEncoder()
+#Encode the language values to a numerical value
+language = LabelEncoder()  #define the enocoder
 df['language'] = language.fit_transform(df['language'])
 df["language"].unique()
 
-### Most Important Features ####
+### Find out most Important Features ####
+#Plotting the Correlation between the numerical values of the Dataset
 correlations = df.corr()
 f,ax = plt.subplots(figsize=(15,15))
 sns.heatmap(correlations, annot=True, cmap="YlGnBu", linewidths=.5)
 
+#According to the heatmap result and nature of the predicted variable , drop other variables from the dataframe while keeping other important variables as independent variables
 df = df.drop(['actor_3_facebook_likes','cast_total_facebook_likes','facenumber_in_poster','language','aspect_ratio'], axis = 1)
 
 ### Pre Processing
