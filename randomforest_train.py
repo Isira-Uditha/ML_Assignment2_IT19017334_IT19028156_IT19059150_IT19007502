@@ -10,46 +10,44 @@ from sklearn.metrics import r2_score
 import data_preprocessing
 import pickle
 
-
+# Get the referance for the data frame
 df = data_preprocessing.df
 country_le = data_preprocessing.country
-## Train and Test Spiliting
+
+# Train and Test Spiliting
 X = df.drop("gross", axis=1)
 y = df["gross"]
 
-train_features, test_features, train_labels, test_labels = train_test_split(X, y, test_size = 0.25, random_state = 1)
+# Split the datasetin to training and testing data
+train_features, test_features, train_labels, test_labels = train_test_split(
+    X, y, test_size=0.25, random_state=1)
 
-## Model
-
-#RandomForestRegressor
+# Model
+# RandomForestRegressor
 random_forest_reg = RandomForestRegressor(n_estimators=1800, random_state=10)
-random_forest_reg.fit(train_features,train_labels)
+random_forest_reg.fit(train_features, train_labels)
 y_pred = random_forest_reg.predict(test_features)
 error = np.sqrt(mean_squared_error(test_labels, y_pred))
 print("mean_squared_error : ${:,.02f}".format(error))
-print("mean_absolute_percentage_error : ",mean_absolute_percentage_error(test_labels, y_pred))
-print("max_error : ",max_error(test_labels, y_pred))
-print("explained_variance_score : ",explained_variance_score(test_labels, y_pred))
+print("mean_absolute_percentage_error : ",
+      mean_absolute_percentage_error(test_labels, y_pred))
+print("max_error : ", max_error(test_labels, y_pred))
+print("explained_variance_score : ",
+      explained_variance_score(test_labels, y_pred))
 print("mean_absolute_error : ", mean_absolute_error(test_labels, y_pred))
 print("Score (R2): ", random_forest_reg.score(test_features, test_labels))
-print("Score (R2): ",r2_score(test_labels, y_pred))
+print("Score (R2): ", r2_score(test_labels, y_pred))
 
 data = {
-        "model": random_forest_reg, 
-        "country_le": country_le,
-        "train_features": train_features,
-        "test_features": test_features,
-        "train_labels": train_labels,
-        "test_labels": test_labels,
-        "y_pred": y_pred
-        }
+    "model": random_forest_reg,
+    "country_le": country_le,
+    "train_features": train_features,
+    "test_features": test_features,
+    "train_labels": train_labels,
+    "test_labels": test_labels,
+    "y_pred": y_pred
+}
 
+# Expoert the model
 with open('randomforest_model.pkl', 'wb') as file:
     pickle.dump(data, file)
-
-
-
-
-
-
-
