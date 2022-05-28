@@ -123,3 +123,19 @@ fig.suptitle('$R^2 = %.2f$' % r2, fontsize=20)
 
 fig.tight_layout()
 
+###plot to show the spread of the true values and predicted values of the testing dataset
+
+plt.figure(figsize=(10, 10))
+plt.scatter(test_labels, y_pred, c='crimson')
+plt.yscale('log')
+plt.xscale('log')
+
+
+
+p1 = max(max(y_pred), max(test_labels))
+p2 = min(min(y_pred), min(test_labels))
+plt.plot([p1, p2], [p1, p2], 'b-')
+plt.xlabel('True Values', fontsize=15)
+plt.ylabel('Predictions', fontsize=15)
+plt.axis('equal')
+plt.show()
