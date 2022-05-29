@@ -136,6 +136,12 @@ fig.tight_layout()
 
 ##Plot to show the spread of the true values and predicted values of the testing dataset.
 
+test_features = data["test_features"]
+test_labels = data["test_labels"]
+train_features = data["train_features"]
+train_labels = data["train_labels"]
+y_pred = data["y_pred"]
+
 plt.figure(figsize=(10, 10))
 #Plot test values with prediction of initially loaded moel.
 plt.scatter(test_labels, y_pred, c='crimson')
