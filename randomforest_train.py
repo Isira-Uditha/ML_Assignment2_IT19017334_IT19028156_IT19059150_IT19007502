@@ -43,6 +43,6 @@ data = {
     "y_pred": y_pred
 }
 
-# Expoert the model
+# Export the model
 with open('randomforest_model.pkl', 'wb') as file:
     pickle.dump(data, file)
