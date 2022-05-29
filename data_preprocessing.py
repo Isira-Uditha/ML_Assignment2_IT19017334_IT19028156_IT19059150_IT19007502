@@ -1,21 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import GridSearchCV
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import numpy as np
-from sklearn.metrics import mean_absolute_percentage_error
-from sklearn.metrics import max_error
-from sklearn.metrics import explained_variance_score
-from sklearn.metrics import mean_absolute_error
-from mpl_toolkits.mplot3d import Axes3D
-from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 import seaborn as sns
 
