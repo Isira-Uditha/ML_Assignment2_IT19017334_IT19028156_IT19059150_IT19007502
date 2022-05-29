@@ -28,14 +28,9 @@ random_forest_reg = RandomForestRegressor(n_estimators=1800, random_state=10)
 random_forest_reg.fit(train_features, train_labels)
 y_pred = random_forest_reg.predict(test_features)
 error = np.sqrt(mean_squared_error(test_labels, y_pred))
-print("mean_squared_error : ${:,.02f}".format(error))
-print("mean_absolute_percentage_error : ",
-      mean_absolute_percentage_error(test_labels, y_pred))
-print("max_error : ", max_error(test_labels, y_pred))
+print("root_mean_squared_error : ${:,.02f}".format(error))
 print("explained_variance_score : ",
       explained_variance_score(test_labels, y_pred))
-print("mean_absolute_error : ", mean_absolute_error(test_labels, y_pred))
-print("Score (R2): ", random_forest_reg.score(test_features, test_labels))
 print("Score (R2): ", r2_score(test_labels, y_pred))
 
 data = {
@@ -48,6 +43,6 @@ data = {
     "y_pred": y_pred
 }
 
-# Expoert the model
+# Export the model
 with open('randomforest_model.pkl', 'wb') as file:
     pickle.dump(data, file)
