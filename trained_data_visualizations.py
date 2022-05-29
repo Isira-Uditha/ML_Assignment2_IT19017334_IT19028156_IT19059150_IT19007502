@@ -36,9 +36,7 @@ ax.barh(imp.index, imp['Importance'], height=0.8, facecolor='grey', alpha=0.8, e
 ax.set_xlabel('Importance score')
 #Set the title for the Axes.
 ax.set_title('Permutation feature importance')
-#########################
-ax.text(0.8, 0.15, 'aegis4048.github.io', fontsize=12, ha='center', va='center',
-        transform=ax.transAxes, color='grey', alpha=0.5)
+
 #Get most important feature to top.
 plt.gca().invert_yaxis()
 fig.tight_layout()
@@ -71,9 +69,7 @@ ax.scatter(X_users_test, y_gross, edgecolor='k', facecolor='grey', alpha=0.7, la
 #Set the labels for y-axis and x-axis.
 ax.set_ylabel('Gross', fontsize=14)
 ax.set_xlabel('Number of voted Users', fontsize=14)
-##############
-ax.text(0.8, 0.1, 'aegis4048.github.io', fontsize=13, ha='center', va='center',
-         transform=ax.transAxes, color='grey', alpha=0.5)
+
 #Place the legend on the Axes.
 ax.legend(facecolor='white', fontsize=11)
 #Set the title for the Axes to r2 score value.
@@ -129,13 +125,6 @@ for ax in axes:
     ax.set_zlabel('Gross', fontsize=12)
     ax.locator_params(nbins=4, axis='x')
     ax.locator_params(nbins=5, axis='x')
-########
-ax1.text2D(0.2, 0.32, 'aegis4048.github.io', fontsize=13, ha='center', va='center',
-           transform=ax1.transAxes, color='grey', alpha=0.5)
-ax2.text2D(0.3, 0.42, 'aegis4048.github.io', fontsize=13, ha='center', va='center',
-           transform=ax2.transAxes, color='grey', alpha=0.5)
-ax3.text2D(0.85, 0.85, 'aegis4048.github.io', fontsize=13, ha='center', va='center',
-           transform=ax3.transAxes, color='grey', alpha=0.5)
 
 ax1.view_init(elev=28, azim=120)
 ax2.view_init(elev=4, azim=114)
